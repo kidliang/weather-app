@@ -11,17 +11,18 @@
 
 		<script type="text/javascript" src="js/weather-app/app.js"></script>
 		<script type="text/javascript" src="js/weather-app/controllers/mainController.js"></script>
-
-		<link rel="stylesheet" href="css/main.css">
 	</head>
 
 	<body>
-		<div class='banner'>
-			<div class='container'>
-				<h1></h1>
-			</div>
-		</div>
+		<div class="container main-frame" ng-app="WeatherApp" ng-controller="mainController" ng-init="init()">
+			<h1>WeatherApp</h1>
 
-		<div class="container main-frame" ng-app="WeatherApp" ng-controller="mainController" ng-init="init()"></div>
+			<form class="form-inline" ng-submit="submit()">
+				<input type="text" class="form-control" placeholder="Location" ng-model="location">
+				<button type="submit" class="btn btn-default">Go</button>
+			</form>	
+
+			<pre>{{data}}</pre>
+		</div>
 	</body>
 </html>
