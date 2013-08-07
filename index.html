@@ -22,7 +22,52 @@
 				<button type="submit" class="btn btn-default">Go</button>
 			</form>	
 
-			<pre>{{data}}</pre>
+			<article ng-hide="!data">
+				<table class="table table-striped">
+					<tr>
+						<th>Location</th>
+						<td>{{data.name}}</td>
+					</tr>				
+					<tr>
+						<th>Country</th>
+						<td>{{data.sys.country}}</td>
+					</tr>				
+					<tr>
+						<th>Longitude</th>
+						<td>{{data.coord.lon}}</td>
+					</tr>
+					<tr>
+						<th>Latitude</th>
+						<td>{{data.coord.lat}}</td>
+					</tr>
+					<tr>
+						<th>Sunrise</th>
+						<td>{{data.sys.sunrise}}</td>
+					</tr>
+					<tr>
+						<th>Sunset</th>
+						<td>{{data.sys.sunset}}</td>
+					</tr>				
+					<tr>
+						<th>Weather</th>
+						<td>{{data.weather[0]['main']}}</td>
+					</tr>
+					<tr>
+						<th>Temperature</th>
+						<td>{{data.main.temp}}</td>
+					</tr>
+					<tr>
+						<th>Humidity</th>
+						<td>{{data.main.humidity}}</td>
+					</tr>
+					<tr>
+						<th>Wind</th>
+						<td>{{data.wind.speed}}</td>
+					</tr>
+				</table>
+
+				<pre>{{data}}</pre>
+			</article>
 		</div>
 	</body>
 </html>
