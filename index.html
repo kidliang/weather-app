@@ -21,6 +21,8 @@
 			<form class="form-inline" ng-submit="submit()">
 				<input type="text" class="form-control input-lg" placeholder="Enter town or city" ng-model="location">
 			</form>	
+			
+			<div ng-show="loader == 1" style="text-align:center; margin-top:50px;"><img src="img/ajax-loader.gif" alt=" "></div>
 
 			<article ng-hide="!data">
 				<h2>
