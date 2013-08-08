@@ -7,24 +7,28 @@
 		<script type="text/javascript" src="js/angular.min.js"></script>
 
 		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/main.css">
 
 		<script type="text/javascript" src="js/weather-app/app.js"></script>
 		<script type="text/javascript" src="js/weather-app/controllers/mainController.js"></script>
 	</head>
 
 	<body>
-		<div class="container main-frame" ng-app="WeatherApp" ng-controller="mainController" ng-init="init()">
+		<main class="container main-frame" ng-app="WeatherApp" ng-controller="mainController" ng-init="init()">
 			<div class="page-header">
 				<h1>AngularJS WeatherApp</h1>
 			</div>
 
+			<!-- search form -->
 			<form class="form-inline" ng-submit="submit()">
-				<input type="text" class="form-control input-lg" placeholder="Enter town or city" ng-model="location">
+				<input type="text" class="form-control input-lg" placeholder="Enter town or city" ng-model="loc">
 			</form>	
-			
-			<div ng-show="loader == 1" style="text-align:center; margin-top:50px;"><img src="img/ajax-loader.gif" alt=" "></div>
 
-			<article ng-hide="!data">
+			<!-- loader image -->
+			<div ng-show="loader == 1" class="loader"><img src="img/ajax-loader.gif" alt=" "></div>
+
+			<!-- weather report --->
+			<article ng-show="status == 200">
 				<h2>
 					{{data.name}}, {{data.sys.country}}
 					<img ng-src="{{img}}" alt=" " class="pull-right">
@@ -36,16 +40,6 @@
 							<th>Weather</th>
 							<td>{{data.weather[0]['main']}}</td>
 						</tr>	
-						<!--
-						<tr>
-							<th>Longitude</th>
-							<td>{{data.coord.lon}}</td>
-						</tr>
-						<tr>
-							<th>Latitude</th>
-							<td>{{data.coord.lat}}</td>
-						</tr>
-						-->
 						<tr>
 							<th>Sunrise</th>
 							<td>{{data.sys.sunrise | customTimeFilter}}</td>
@@ -68,9 +62,15 @@
 						</tr>
 					</tbody>
 				</table>
-
-				<!--<pre>{{data}}</pre>-->
 			</article>
-		</div>
+			
+			<!-- error message --->
+			<article ng-show="status == 0">
+				<div class="alert alert-danger">{{data}}</div>
+			</article>
+			
+			<!-- ajax response -->
+			<!--<pre ng-show="data">{{data}}</pre>-->
+		</main>
 	</body>
 </html>
