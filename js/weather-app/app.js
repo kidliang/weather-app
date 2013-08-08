@@ -7,7 +7,12 @@ var app = angular.module('WeatherApp',[])
 			var minutes = prependZeros(d.getMinutes(), 2);
             return hours + ':' + minutes + ' GMT';
         };
-    });
+    })
+	.filter('kelvinToCelsius', function () {
+        return function (n) {
+            return n - 273.15;
+        };
+    });	
 
 /**
  * I prepend zeros to a number
