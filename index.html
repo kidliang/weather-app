@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 
-<html>
+<html class="no-js">
 	<head>
-		<title></title>
+		<title>AngularJS WeatherApp</title>
 
-		<script type="text/javascript" src="js/angular.min.js"></script>
 
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/main.css">
 
-		<script type="text/javascript" src="js/weather-app/app.js"></script>
-		<script type="text/javascript" src="js/weather-app/controllers/mainController.js"></script>
+		<script src="js/modernizr.custom.10824.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/weather-app/app.js"></script>
+		<script src="js/weather-app/controllers/mainController.js"></script>
 	</head>
 
 	<body>
@@ -19,58 +20,71 @@
 				<h1>AngularJS WeatherApp</h1>
 			</div>
 
-			<!-- search form -->
-			<form class="form-inline" ng-submit="submit()">
-				<input type="text" class="form-control input-lg" placeholder="Enter town or city" ng-model="loc">
-			</form>	
-
-			<!-- loader image -->
-			<div ng-show="loader == 1" class="loader"><img src="img/ajax-loader.gif" alt=" "></div>
-
-			<!-- weather report --->
-			<article ng-show="status == 200">
-				<h2>
-					{{data.name}}, {{data.sys.country}}
-					<img ng-src="{{img}}" alt=" " class="pull-right">
-				</h2>
-				
-				<table class="table table-striped">
-					<tbody>
-						<tr>
-							<th>Weather</th>
-							<td>{{data.weather[0]['main']}}</td>
-						</tr>	
-						<tr>
-							<th>Sunrise</th>
-							<td>{{data.sys.sunrise | customTimeFilter}}</td>
-						</tr>
-						<tr>
-							<th>Sunset</th>
-							<td>{{data.sys.sunset | customTimeFilter}}</td>
-						</tr>				
-						<tr>
-							<th>Temperature</th>
-							<td>{{data.main.temp | kelvinToCelsius | number:2}}&deg;C</td>
-						</tr>
-						<tr>
-							<th>Humidity</th>
-							<td>{{data.main.humidity}}%</td>
-						</tr>
-						<tr>
-							<th>Wind</th>
-							<td>{{data.wind.speed}}mps</td>
-						</tr>
-					</tbody>
-				</table>
-			</article>
+			<noscript>
+				<article>
+					<div class="alert alert-danger">Javascript is disabled in your web browser. If you <a href="http://www.enable-javascript.com/">enable JavaScript</a>, this text will change.</div>
+				</article>			
+			</noscript>
 			
-			<!-- error message --->
-			<article ng-show="status == 0">
-				<div class="alert alert-danger">{{data}}</div>
-			</article>
-			
-			<!-- ajax response -->
-			<!--<pre ng-show="data">{{data}}</pre>-->
+			<div class="hide-on-no-js">
+				<!-- search form -->
+				<form class="form-inline" ng-submit="submit()">
+					<input type="text" class="form-control input-lg" placeholder="Enter town or city" ng-model="loc">
+				</form>
+
+				<!-- ajax loader image -->
+				<div ng-show="loader == 1" class="loader"><img src="img/ajax-loader.gif" alt=" "></div>
+
+				<!-- weather report --->
+				<article ng-show="status == 200 && data.cod == 200">
+					<h2>
+						{{data.name}}, {{data.sys.country}}
+						<img ng-src="{{img}}" alt=" " class="pull-right">
+					</h2>
+
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<th>Weather</th>
+								<td>{{data.weather[0]['main']}}</td>
+							</tr>
+							<tr>
+								<th>Sunrise</th>
+								<td>{{data.sys.sunrise | customTimeFilter}}</td>
+							</tr>
+							<tr>
+								<th>Sunset</th>
+								<td>{{data.sys.sunset | customTimeFilter}}</td>
+							</tr>
+							<tr>
+								<th>Temperature</th>
+								<td>{{data.main.temp | kelvinToCelsius | number:2}}&deg;C</td>
+							</tr>
+							<tr>
+								<th>Humidity</th>
+								<td>{{data.main.humidity}}%</td>
+							</tr>
+							<tr>
+								<th>Wind</th>
+								<td>{{data.wind.speed}}mps</td>
+							</tr>
+						</tbody>
+					</table>
+				</article>
+
+				<!-- location not found error message --->
+				<article ng-show="status == 200 && data.cod == 404">
+					<div class="alert alert-danger">{{data.message}}</div>
+				</article>			
+
+				<!-- failed ajax request error message --->
+				<article ng-show="status == 0">
+					<div class="alert alert-danger">{{data}}</div>
+				</article>
+
+				<!-- ajax response -->
+				<!-- <pre ng-show="data">{{data}}</pre> -->
+			</div>
 		</main>
 	</body>
 </html>
