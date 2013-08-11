@@ -2,7 +2,7 @@
 
 ##Overview
 
-A simple weather application using the [OpenWeatherMap](http://openweathermap.org/API) API.
+A simple weather application using data from the [OpenWeatherMap](http://openweathermap.org/API) API.
 
 ##Technologies
 
