@@ -14,4 +14,4 @@ A simple weather application using data from the [OpenWeatherMap](http://openwea
 
 ##Author
 
-This application was developed by [Simon Bingham](https://twitter.com/simonbingham).
+Application developed by [Simon Bingham](https://twitter.com/simonbingham).
