@@ -1,4 +1,4 @@
-#AngularJS Weather App
+#AngularJS WeatherApp
 
 ##Overview
 

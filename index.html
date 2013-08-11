@@ -49,16 +49,8 @@
 								<td>{{data.weather[0]['main']}}</td>
 							</tr>
 							<tr>
-								<th>Sunrise</th>
-								<td>{{data.sys.sunrise | customTimeFilter}}</td>
-							</tr>
-							<tr>
-								<th>Sunset</th>
-								<td>{{data.sys.sunset | customTimeFilter}}</td>
-							</tr>
-							<tr>
 								<th>Temperature</th>
-								<td>{{data.main.temp | kelvinToCelsius | number:2}}&deg;C</td>
+								<td>{{data.main.temp | customKelvinToCelsiusFilter | number:2}}&deg;C</td>
 							</tr>
 							<tr>
 								<th>Humidity</th>
@@ -68,6 +60,14 @@
 								<th>Wind</th>
 								<td>{{data.wind.speed}}mps</td>
 							</tr>
+							<tr>
+								<th>Sunrise</th>
+								<td>{{data.sys.sunrise | customTimeFilter}}</td>
+							</tr>
+							<tr>
+								<th>Sunset</th>
+								<td>{{data.sys.sunset | customTimeFilter}}</td>
+							</tr>							
 						</tbody>
 					</table>
 				</article>

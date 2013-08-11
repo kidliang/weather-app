@@ -1,4 +1,6 @@
 var app = angular.module('WeatherApp',[])
+
+	// filter to convert epoch time to a human friendly time
 	.filter('customTimeFilter', function () {
         return function (epochTime) {
 			var d = new Date(0);
@@ -8,7 +10,9 @@ var app = angular.module('WeatherApp',[])
             return hours + ':' + minutes + ' GMT';
         };
     })
-	.filter('kelvinToCelsius', function () {
+	
+	// filter to convert temperature in kelvin to celsius
+	.filter('customKelvinToCelsiusFilter', function () {
         return function (n) {
             return n - 273.15;
         };
